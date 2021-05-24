@@ -20,13 +20,18 @@ const verifyPassword = (req, res, next) => {
   if (password === "chickennugget") {
     next();
   } else {
-    res.send("Sorry you need a password!");
+    // res.send("Sorry you need a password!");
+    throw new Error("Password Required!");
   }
 };
 
 app.get("/", (req, res) => {
   console.log(`Request date: ${req.requestTime}`);
   res.send("homepage");
+});
+
+app.get("/error", (req, res) => {
+  chicken.fly();
 });
 
 app.get("/dogs", (req, res) => {
@@ -44,6 +49,6 @@ app.use((req, res) => {
   res.status(404).send("NOT FOUND");
 });
 
-app.listen(3000, () => {
-  console.log("Listening on Port 3000");
+app.listen(4000, () => {
+  console.log("Listening on Port 4000");
 });
